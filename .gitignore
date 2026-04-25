@@ -1,1 +1,7 @@
-node_modmule
+node_modules
+*.log
+*.tmp
+.DS_Store
+.idea/
+.vscode/
+*.env
