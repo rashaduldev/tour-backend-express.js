@@ -2,18 +2,17 @@ import { Server } from "http";
 
 import mongoose from "mongoose";
 import app from "./app.js";
+import { envConfig } from "./app/config/env.js";
 
 let server: Server;
 
 const startServer = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://rashaduldev_db_user:rashaduldev_db_pass@cluster0.kezdou4.mongodb.net/tour-db?appName=Cluster0",
-    );
+    await mongoose.connect(envConfig.dbUrl);
     console.log("Connected to MongoDB");
 
-    server = app.listen(5000, () => {
-      console.log("Server is running on port 5000");
+    server = app.listen(envConfig.port, () => {
+      console.log(`Server is running on port ${envConfig.port}`);
     });
   } catch (error) {
     console.error("Error starting server:", error);
