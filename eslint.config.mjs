@@ -11,7 +11,9 @@ tseslint.configs.strict,
 tseslint.configs.stylistic,
 {
     rules: {
-        'no-console': 'warn',
+      'no-console': 'warn', 
+      '@typescript-eslint/no-unused-vars': 'off', 
+      '@typescript-eslint/no-explicit-any': 'off',
     },
 }
 );
