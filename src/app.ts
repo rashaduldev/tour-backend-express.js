@@ -1,8 +1,10 @@
 import express from "express";
 import type { NextFunction, Request, Response } from "express";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
 import { authRoutes } from "./app/modules/auth/auth.routes.js";
 import { userRoutes } from "./app/modules/user/user.routes.js";
+import { swaggerSpec } from "./app/config/swagger.js";
 
 const app = express();
 
@@ -18,6 +20,12 @@ app.get("/", (req, res) => {
   res.status(200).json({
     message: "Welcome to the Tour booking Express server!",
   });
+});
+
+// Swagger API docs
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.get("/api-docs.json", (req, res) => {
+  res.status(200).json(swaggerSpec);
 });
 
 // Auth + user routes
